@@ -10,7 +10,7 @@ module Fik
         @game.execute(["look"])
         
         while true do
-          printf ">"
+          printf "> "
           command = gets.chomp.split(" ")
           puts @game.execute(command)
         end

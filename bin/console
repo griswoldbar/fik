@@ -10,7 +10,8 @@ CONFIG = Fik::Configuration.new("./lib/../sample").build
 
 def game
   @_game ||= begin 
-    g = Fik::GameBuilder.new(CONFIG).build
+    actor = Fik::Models::Actor.new({"name" => "Bob", "starting_room" => "kitchen"})
+    g = Fik::GameBuilder.new(CONFIG, actor).build
     interface = Fik::Interfaces::CLI.new(g)
   end
 end

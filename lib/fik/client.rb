@@ -8,7 +8,7 @@ module Fik
     
     def run
       while true do
-        printf ">"
+        printf "> "
         command = gets.chomp
         response = HTTParty.get("#{@url}/run?command=#{command}")
         puts response

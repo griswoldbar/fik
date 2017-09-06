@@ -2,7 +2,7 @@ module Fik
   class Game
     attr_writer :interface
     
-    def initialize(world:, protagonist:)
+    def initialize(world, protagonist)
       @world = world
       @protagonist = protagonist
       @current_room = @world.rooms[protagonist.starting_room]
