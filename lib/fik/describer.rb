@@ -2,19 +2,23 @@ module Fik
   class Describer    
     def describe(thing)
       #TODO: only allow things that can be seen to be described
-      type = thing["type"]
-      if type == "room"
+      if thing.type == "room"
         describe_room(thing)
       else
-        thing["description"]
+        thing.description
       end
     end
     
     private
     def describe_room(room)
-      directions = room["exits"].keys
+      items = room.items
+      item_statement = items.map(&:starting_description).join("\n")
+      
+      directions = room.exit_directions
       exit_prefix = directions.count == 1 ? "There is an exit" : "There are exits"
-      room["description"] + " #{exit_prefix} to the #{directions.to_sentence}."
+      exit_statement = "#{exit_prefix} to the #{directions.to_sentence}."
+      
+      [room.description, exit_statement, item_statement].compact.join("\n")
     end
   end
 end

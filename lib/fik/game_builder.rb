@@ -6,9 +6,10 @@ module Fik
     
     def build
       Game.new(
-        world: Fik::World.new(@config["rooms"]),
-        protagonist: Fik::Protagonist.new(@config["protagonist"]),
-        glossary: Fik::Glossary.new(@config)
+        world: Fik::World.new(
+          rooms: @config["rooms"], 
+          items: @config["items"]),
+        protagonist: Fik::Protagonist.new(@config["protagonist"])
       )
     end
     

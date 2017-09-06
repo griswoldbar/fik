@@ -1,5 +1,5 @@
 description: A filthy kitchen. There is dirt everywhere.
-objects:
+items:
   - note
   - knife
 exits: 

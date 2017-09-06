@@ -2,12 +2,11 @@ module Fik
   class Game
     attr_writer :interface
     
-    def initialize(world:, protagonist:, glossary:)
+    def initialize(world:, protagonist:)
       @world = world
       @protagonist = protagonist
       @current_room = @world.rooms[protagonist.starting_room]
       @describer = Describer.new
-      @glossary = glossary
       @interpreter = Interpreter.new
     end
     
@@ -21,7 +20,7 @@ module Fik
     end
     
     def describe(name=nil)
-      object = @glossary.lookup(name || @current_room.name)
+      object = @world.find_by_name(name || @current_room.name)
 
       @interface.output(@describer.describe(object))
     end

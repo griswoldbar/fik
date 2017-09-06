@@ -1,10 +1,14 @@
 module Fik
   class World
-    attr_reader :rooms
+    attr_reader :rooms, :items
     
-    def initialize(room_hashes)
-      @rooms = room_hashes.inject({}) {|memo, (k,v)| memo[k] = Models::Room.new(v) ; memo}
+    def initialize(rooms:, items:)
+      @rooms = rooms.inject({}) {|memo, (k,v)| memo[k] = Models::Room.new(v, self) ; memo}
+      @items = (items || []).inject({}) {|memo, (k,v)| memo[k] = Models::Item.new(v, self) ; memo}
     end
     
+    def find_by_name(name)
+      @rooms[name] || @items[name]
+    end
   end
 end
