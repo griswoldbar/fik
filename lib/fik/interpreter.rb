@@ -2,6 +2,7 @@ module Fik
   class Interpreter
     COMMANDS = [
       "describe",
+      "look",
       "go",
       "inventory",
       "take"
@@ -12,8 +13,7 @@ module Fik
       "s" => "go south",
       "e" => "go east",
       "w" => "go west",
-      "l" => "describe",
-      "look" => "describe",
+      "l" => "look",
       "i" => "inventory"
     }
     

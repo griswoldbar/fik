@@ -20,10 +20,17 @@ module Fik
     end
     
     private
-    def describe(name=nil)
-      object = @world.find_by_name(name || @current_room.name)
-
-      @interface.output(@describer.describe(object))
+    def look
+      @interface.output(@describer.describe(@current_room))
+    end
+    
+    def describe(item_id)
+      if @protagonist.inventory.include?(item_id) || @current_room.item_ids.include?(item_id)
+        item = @world.find_by_name(item_id)
+        @interface.output(@describer.describe(item))
+      else
+        @interface.output("You can't see any #{item_id} here")
+      end
     end
     
     def go(direction)
@@ -36,7 +43,7 @@ module Fik
       destination = @world.rooms[destination_ref]
       @interface.output("You go #{direction} to the #{destination_ref}.")
       @current_room = destination
-      describe
+      look
     end
     
     def inventory

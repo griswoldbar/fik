@@ -7,7 +7,7 @@ module Fik
       end
       
       def run
-        @game.execute(["describe"])
+        @game.execute(["look"])
         
         while true do
           printf ">"
