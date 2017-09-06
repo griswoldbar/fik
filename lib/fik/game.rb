@@ -6,7 +6,8 @@ module Fik
       @world = world
       @protagonist = protagonist
       @current_room = @world.rooms[protagonist.starting_room]
-      @describer = Describer.new
+      @current_room.add_actor(@protagonist.id)
+      @describer = Describer.new(@protagonist)
       @interpreter = Interpreter.new
     end
     
@@ -43,6 +44,7 @@ module Fik
       destination = @world.rooms[destination_ref]
       @interface.output("You go #{direction} to the #{destination_ref}.")
       @current_room = destination
+      @current_room.add_actor(@protagonist.id)
       look
     end
     
