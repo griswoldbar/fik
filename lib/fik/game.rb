@@ -21,13 +21,13 @@ module Fik
     end
     
     def describe(name=nil)
-      object = @glossary.lookup(name || @current_room["name"])
+      object = @glossary.lookup(name || @current_room.name)
 
       @interface.output(@describer.describe(object))
     end
     
     def go(direction)
-      destination_ref = @current_room["exits"][direction]
+      destination_ref = @current_room.exits[direction]
       unless destination_ref 
         @interface.output("You can't go that way.")
         return

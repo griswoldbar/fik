@@ -12,6 +12,7 @@ require "fik/protagonist"
 require "fik/version"
 require "fik/world"
 
+require "fik/models/room"
 
 module Fik
   # Your code goes here...
