@@ -5,7 +5,6 @@ require 'indefinite_article'
 require "fik/configuration"
 require "fik/describer"
 require "fik/game"
-require "fik/game_builder"
 require "fik/interpreter"
 require "fik/version"
 require "fik/world"

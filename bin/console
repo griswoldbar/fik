@@ -9,9 +9,10 @@ require "pry"
 CONFIG = Fik::Configuration.new("./lib/../sample").build
 
 def game
-  @_game ||= begin 
+  @_game ||= begin
+    world = Fik::World.new(rooms: CONFIG["rooms"],items: CONFIG["items"])
     actor = Fik::Models::Actor.new({"name" => "Bob", "starting_room" => "kitchen"})
-    g = Fik::GameBuilder.new(CONFIG, actor).build
+    g = Fik::Game.new(world, actor)
     interface = Fik::Interfaces::CLI.new(g)
   end
 end
