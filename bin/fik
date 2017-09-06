@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "fik"
+require "fik/client"
+require "pry"
+
+client = Fik::Client.new("http://localhost:9292")
+client.run

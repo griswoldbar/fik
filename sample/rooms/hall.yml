@@ -1,0 +1,5 @@
+description: A large hall.
+exits: 
+  north: drawing_room
+  south: garden
+  west: kitchen

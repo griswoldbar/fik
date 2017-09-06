@@ -1,0 +1,6 @@
+description: A filthy kitchen. There is dirt everywhere.
+objects:
+  - note
+  - knife
+exits: 
+  east: hall

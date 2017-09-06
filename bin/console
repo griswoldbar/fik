@@ -1,0 +1,18 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "fik"
+require "fik/interfaces/cli"
+
+require "pry"
+
+CONFIG = Fik::Configuration.new("./lib/../sample").build
+
+def game
+  @_game ||= begin 
+    g = Fik::GameBuilder.new(CONFIG).build
+    interface = Fik::Interfaces::CLI.new(g)
+  end
+end
+Pry.start
+
