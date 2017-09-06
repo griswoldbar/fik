@@ -19,6 +19,7 @@ module Fik
       end
     end
     
+    private
     def describe(name=nil)
       object = @world.find_by_name(name || @current_room.name)
 
@@ -40,6 +41,16 @@ module Fik
     
     def inventory
       @interface.output("You have:\n" + @protagonist.inventory.map {|o| "- #{o.with_indefinite_article}"}.join("\n"))
+    end
+    
+    def take(item_id)
+      if @current_room.item_ids.include?(item_id)
+        @protagonist.inventory << item_id
+        @current_room.remove_item(item_id)
+        @interface.output(item_id + ": taken.")
+      else
+        @interface.output("You can't see any #{item_id} here!")
+      end
     end
   end
 end

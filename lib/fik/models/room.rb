@@ -1,7 +1,7 @@
 module Fik
   module Models
     class Room
-      attr_reader :type, :description, :exits, :name
+      attr_reader :type, :description, :exits, :name, :item_ids
       def initialize(hash, world)
         @world = world
         @description = hash["description"]
@@ -15,6 +15,10 @@ module Fik
         @item_ids.map do |id|
           @world.items[id]
         end
+      end
+      
+      def remove_item(item_id)
+        @item_ids -= [item_id]
       end
       
       def exit_directions

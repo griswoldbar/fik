@@ -3,7 +3,8 @@ module Fik
     COMMANDS = [
       "describe",
       "go",
-      "inventory"
+      "inventory",
+      "take"
     ]
     
     TRANSLATIONS = {
@@ -16,10 +17,6 @@ module Fik
       "i" => "inventory"
     }
     
-    # def initialize(game)
-    #   @game = game
-    # end
-    # 
     def interpret(command)
       meth = command[0]
       if COMMANDS.include?(meth)
