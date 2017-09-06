@@ -15,8 +15,13 @@ module Fik
     end
     
     get '/run' do
-      game = games[params[:name]]
+      game = Fik::Interfaces::Web.new(games[params[:name]])
       game.run(params[:command])
+    end
+    
+    get '/messages' do
+      game = games[params[:name]]
+      game.protagonist.read_messages
     end
     
     private
@@ -31,7 +36,7 @@ module Fik
     
     def add_game(actor)
       @@games ||= {}
-      @@games[actor.name] = Fik::Interfaces::Web.new(Fik::Game.new(world, actor))
+      @@games[actor.name] = Fik::Game.new(world, actor)
     end
     
     def games

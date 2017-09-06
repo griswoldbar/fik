@@ -6,6 +6,7 @@ require "fik/configuration"
 require "fik/describer"
 require "fik/game"
 require "fik/interpreter"
+require "fik/notifier"
 require "fik/version"
 require "fik/world"
 

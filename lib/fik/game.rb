@@ -1,14 +1,19 @@
 module Fik
   class Game
     attr_writer :interface
+    attr_reader :protagonist
     
     def initialize(world, protagonist)
       @world = world
       @protagonist = protagonist
       @current_room = @world.rooms[protagonist.starting_room]
-      @current_room.add_actor(@protagonist.id)
+
       @describer = Describer.new(@protagonist)
       @interpreter = Interpreter.new
+      @notifier = Notifier.new(@world)
+      
+      @current_room.add_actor(@protagonist.id)
+      @world.add_actor(@protagonist)
     end
     
     def execute(command)
@@ -45,6 +50,10 @@ module Fik
       @interface.output("You go #{direction} to the #{destination_ref}.")
       @current_room = destination
       @current_room.add_actor(@protagonist.id)
+      @notifier.notify(
+        recipient_ids: @current_room.actor_ids - [@protagonist.id],
+        message: "#{@protagonist.name} has entered."
+      )
       look
     end
     

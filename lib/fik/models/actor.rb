@@ -7,8 +7,16 @@ module Fik
         @name, @id = attrs["name"], attrs["name"]
         @starting_room = attrs["starting_room"]
         @inventory = []
+        @inbox = []
       end
 
+      def add_message(message)
+        @inbox << message
+      end
+      
+      def read_messages
+        @inbox.tap { @inbox = [] }
+      end
     end
   end
 end

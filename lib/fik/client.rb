@@ -7,18 +7,14 @@ module Fik
     end
     
     def run
+      puts "Enter name: "
+      name = gets.chomp
+      puts HTTParty.get("#{@url}/start?name=#{name}")
+      
       while true do
         printf "> "
         command = gets.chomp
-        
-        response = if command == "new"
-          puts "Enter name: "
-          name = gets.chomp
-          HTTParty.get("#{@url}/start?name=#{name}")
-        else
-          HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
-        end
-        puts response
+        puts HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
       end
     end
   end
