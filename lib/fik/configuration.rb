@@ -1,5 +1,7 @@
 module Fik
   class Configuration
+    SERVER_CONFIG = YAML.load_file(File.expand_path("../../../config/fik.yml", __FILE__))
+        
     def initialize(folder)
       @folder = folder
     end

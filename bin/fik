@@ -4,6 +4,5 @@ require "bundler/setup"
 require "fik"
 require "fik/client/web_client"
 
-
-client = Fik::Client::WebClient.new("http://0.0.0.0:9293")
+client = Fik::Client::WebClient.new(Fik::Configuration::SERVER_CONFIG['web_host'])
 client.run

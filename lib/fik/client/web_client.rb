@@ -42,7 +42,7 @@ module Fik
       def messaging_service(name)
         Thread.new do
           EM.run do 
-            Faye::Client.new('http://0.0.0.0:9292/faye').subscribe("/#{name}") do |response|
+            Faye::Client.new(Configuration::SERVER_CONFIG['push_host']).subscribe("/#{name}") do |response|
               @terminal.messages(response["data"]["message"])
             end
           end
