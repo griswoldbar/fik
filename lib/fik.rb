@@ -15,5 +15,5 @@ require "fik/models/item"
 require "fik/models/actor"
 
 module Fik
-  # Your code goes here...
+
 end

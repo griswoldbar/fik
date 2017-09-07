@@ -16,7 +16,13 @@ module Fik
       "w" => "go west",
       "d" => "go down",
       "u" => "go up",
-
+      "north" => "go north",
+      "south" => "go south",
+      "east" => "go east",
+      "west" => "go west",
+      "down" => "go down",
+      "up" => "go up",
+      
       "l" => "look",
       "i" => "inventory"
     }
