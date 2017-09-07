@@ -22,6 +22,10 @@ module Fik
         @actor_ids << actor_id
       end
       
+      def remove_actor(actor_id)
+        @actor_ids -= [actor_id]
+      end
+      
       def remove_item(item_id)
         @item_ids -= [item_id]
       end

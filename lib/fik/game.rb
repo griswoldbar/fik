@@ -45,11 +45,14 @@ module Fik
         @interface.output("You can't go that way.")
         return
       end
-      
       destination = @world.rooms[destination_ref]
-      @interface.output("You go #{direction} to the #{destination_ref}.")
+
+      @current_room.remove_actor(@protagonist.id)
+      destination.add_actor(@protagonist.id)
       @current_room = destination
-      @current_room.add_actor(@protagonist.id)
+    
+      @interface.output("You go #{direction} to the #{destination_ref}.")
+
       @notifier.notify(
         recipient_ids: @current_room.actor_ids - [@protagonist.id],
         message: "#{@protagonist.name} has entered."

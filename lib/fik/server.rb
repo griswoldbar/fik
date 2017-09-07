@@ -21,7 +21,7 @@ module Fik
     
     get '/messages' do
       game = games[params[:name]]
-      game.protagonist.read_messages
+      game.protagonist.read_messages.join("\n")
     end
     
     private
