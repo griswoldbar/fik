@@ -32,11 +32,16 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "pry-remote"
+  spec.add_development_dependency "pry-stack_explorer"
   
   spec.add_runtime_dependency "activesupport"
   spec.add_runtime_dependency "indefinite_article"
   spec.add_runtime_dependency "sinatra"
   spec.add_runtime_dependency "httparty"
   spec.add_runtime_dependency "curses"
+  spec.add_runtime_dependency "thin"
+  spec.add_runtime_dependency "faye"
+  spec.add_runtime_dependency "faye-websocket"
+  spec.add_runtime_dependency "private_pub"
 
 end

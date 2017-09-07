@@ -1,5 +1,6 @@
 require 'httparty'
-require 'pry-remote'
+require "faye"
+require "fik/client/terminal"
 
 module Fik
   module Client
@@ -17,7 +18,7 @@ module Fik
         @terminal.clear_body
         @terminal.body(HTTParty.get("#{@url}/start?name=#{name}"))
         command = 'look'
-        poll_messages(name)
+        messaging_service(name)
 
         while true do
           response = HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
@@ -38,18 +39,15 @@ module Fik
         end
       end
       
-      def poll_messages(name)
+      def messaging_service(name)
         Thread.new do
-          while true do
-            sleep 2
-            response = HTTParty.get("#{@url}/messages?name=#{name}").body
-            if response.present?
-              @terminal.messages(response)
+          EM.run do 
+            Faye::Client.new('http://0.0.0.0:9292/faye').subscribe("/#{name}") do |response|
+              @terminal.messages(response["data"]["message"])
             end
           end
         end
-      end
-      
+      end      
     end
   end
 end

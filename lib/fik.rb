@@ -14,6 +14,9 @@ require "fik/models/room"
 require "fik/models/item"
 require "fik/models/actor"
 
+require "fik/server/web_socket_client" #debug
+
+
 module Fik
 
 end

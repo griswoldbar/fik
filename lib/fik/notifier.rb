@@ -5,8 +5,9 @@ module Fik
     end
     
     def notify(recipient_ids:, message:)
-      recipients = recipient_ids.map {|id| @world.actors[id] }
-      recipients.each {|r| r.add_message(message) }
+      recipient_ids.each do |id|
+        PrivatePub.publish_to "/#{id}", :message => message
+      end
     end
   end
 end

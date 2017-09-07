@@ -3,10 +3,7 @@
 require "bundler/setup"
 require "fik"
 require "fik/client/web_client"
-require "fik/client/terminal"
-require "fik/client/window"
 
-require "pry"
 
-client = Fik::Client::WebClient.new("http://localhost:9292")
+client = Fik::Client::WebClient.new("http://0.0.0.0:9293")
 client.run
