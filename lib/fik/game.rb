@@ -69,6 +69,12 @@ module Fik
         @world.find_by_name(item_id).take
         @protagonist.add_item(item_id)
         @current_room.remove_item(item_id)
+        
+        @notifier.notify(
+          recipient_ids: @current_room.actor_ids - [@protagonist.id],
+          message: "#{@protagonist.name} took the #{item_id}."
+        )
+        
         @interface.output(item_id + ": taken.")
       else
         @interface.output("You can't see any #{item_id} here!")
@@ -79,6 +85,11 @@ module Fik
       if @protagonist.inventory.include?(item_id)
         @protagonist.remove_item(item_id)
         @current_room.add_item(item_id)
+        @notifier.notify(
+          recipient_ids: @current_room.actor_ids - [@protagonist.id],
+          message: "#{@protagonist.name} dropped the #{item_id}."
+        )
+        
         @interface.output(item_id + ": dropped.")
       else
         @interface.output("You don't have a #{item_id}.")
