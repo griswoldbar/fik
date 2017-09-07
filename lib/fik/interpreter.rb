@@ -5,7 +5,8 @@ module Fik
       "look",
       "go",
       "inventory",
-      "take"
+      "take",
+      "drop"
     ]
     
     TRANSLATIONS = {

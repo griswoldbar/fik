@@ -14,6 +14,14 @@ module Fik
         @inbox << message
       end
       
+      def remove_item(item_id)
+        @inventory -= [item_id]
+      end
+      
+      def add_item(item_id)
+        @inventory << item_id
+      end
+      
       def read_messages
         @inbox.tap { @inbox = [] }
       end

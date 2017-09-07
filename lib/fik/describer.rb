@@ -15,16 +15,23 @@ module Fik
     
     private
     def describe_room(room)
-      items = room.items
-      item_statement = items.map(&:starting_description).join("\n")
+      starting_item_statement = room.items.reject(&:taken?).map(&:description).join("\n")
+      
+      left_items = room.items.select(&:taken?)
+      left_item_statement = if left_items.any?
+        %Q{Also here are: \n#{left_items.map(&:list_name).join("\n")}}
+      end
       
       actors = room.actor_ids - [@protagonist.id]
-      actor_statement = actors.map {|a| "#{a} is here."}.join("\n")
+      actor_statement = if actors.any? 
+        actors.map {|a| "#{a} is here."}.join("\n")
+      end
+      
       directions = room.exit_directions
       exit_prefix = directions.count == 1 ? "There is an exit" : "There are exits"
       exit_statement = "#{exit_prefix} to the #{directions.to_sentence}."
       
-      [room.description, exit_statement, item_statement, actor_statement].compact.join("\n")
+      [room.description, exit_statement, starting_item_statement, actor_statement, left_item_statement].compact.join("\n")
     end
   end
 end

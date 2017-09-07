@@ -30,6 +30,10 @@ module Fik
         @item_ids -= [item_id]
       end
       
+      def add_item(item_id)
+        @item_ids << item_id
+      end
+      
       def exit_directions
         @exits.keys
       end
