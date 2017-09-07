@@ -12,6 +12,10 @@ module Fik
         @actor_ids = []
       end
 
+      def print_name
+        @name.gsub("_", " ")
+      end
+      
       def items
         @item_ids.map do |id|
           @world.items[id]

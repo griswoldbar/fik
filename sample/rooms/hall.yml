@@ -1,5 +1,6 @@
-description: A large hall.
+description: A large hall. Stairs lead up.
 exits: 
   north: drawing_room
   south: garden
   west: kitchen
+  up: first_floor_hall

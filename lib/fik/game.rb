@@ -17,9 +17,11 @@ module Fik
     end
     
     def execute(command)
+      @messages = []
       instruction = @interpreter.interpret(command)
       if instruction
         send(*instruction)
+        @interface.output(@messages.join("\n"))
       else
         @interface.output("I'm not sure what you meant...")
       end
@@ -27,22 +29,22 @@ module Fik
     
     private
     def look
-      @interface.output(@describer.describe(@current_room))
+      @messages << @describer.describe(@current_room)
     end
     
     def describe(item_id)
       if @protagonist.inventory.include?(item_id) || @current_room.item_ids.include?(item_id)
         item = @world.find_by_name(item_id)
-        @interface.output(@describer.describe(item))
+        @messages << @describer.describe(item)
       else
-        @interface.output("You can't see any #{item_id} here")
+        @messages << "You can't see any #{item_id} here"
       end
     end
     
     def go(direction)
       destination_ref = @current_room.exits[direction]
       unless destination_ref 
-        @interface.output("You can't go that way.")
+        @messages << "You can't go that way."
         return
       end
       destination = @world.rooms[destination_ref]
@@ -51,17 +53,18 @@ module Fik
       destination.add_actor(@protagonist.id)
       @current_room = destination
     
-      @interface.output("You go #{direction} to the #{destination_ref}.")
+      @messages << "You go #{direction} to the #{destination.print_name}."
 
       @notifier.notify(
         recipient_ids: @current_room.actor_ids - [@protagonist.id],
         message: "#{@protagonist.name} has entered."
       )
+
       look
     end
     
     def inventory
-      @interface.output("You have:\n" + @protagonist.inventory.map {|i| "- #{i.with_indefinite_article}"}.join("\n"))
+      "You have:\n" + @protagonist.inventory.map {|i| "- #{i.with_indefinite_article}"}.join("\n")
     end
     
     def take(item_id)
@@ -75,9 +78,9 @@ module Fik
           message: "#{@protagonist.name} took the #{item_id}."
         )
         
-        @interface.output(item_id + ": taken.")
+        @messages << (item_id + ": taken.")
       else
-        @interface.output("You can't see any #{item_id} here!")
+        @messages << "You can't see any #{item_id} here!"
       end
     end
     
@@ -90,9 +93,9 @@ module Fik
           message: "#{@protagonist.name} dropped the #{item_id}."
         )
         
-        @interface.output(item_id + ": dropped.")
+        @messages << (item_id + ": dropped.")
       else
-        @interface.output("You don't have a #{item_id}.")
+        @messages << "You don't have a #{item_id}."
       end
     end
   end
