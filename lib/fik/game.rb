@@ -16,6 +16,10 @@ module Fik
       @world.add_actor(@protagonist)
     end
     
+    def room_name
+      @current_room.name
+    end
+    
     def execute(command)
       @messages = []
       instruction = @interpreter.interpret(command)

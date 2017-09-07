@@ -4,20 +4,38 @@ module Fik
   class Client
     def initialize(url)
       @url = url
+      @room = ""
     end
     
     def run
       puts "Enter name: "
       name = gets.chomp
       puts HTTParty.get("#{@url}/start?name=#{name}")
-      
-      poll_messages(name)
+      system "clear"
+      # poll_messages(name)
+      command = "l"
       while true do
+        response = HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
+        set_room(response['room'])
+        print_output(response['output'])
         printf "> "
         command = gets.chomp
         exit if command == "exit"
-        puts HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
+
       end
+    end
+    
+    private
+    def set_room(name)
+      unless @room == name
+        @room = name
+        print name + "\n\n"
+      end
+    end
+    
+    def print_output(text)
+      print "\r"
+      print text
     end
     
     def poll_messages(name)

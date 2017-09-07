@@ -3,6 +3,8 @@ require 'sinatra/base'
 require 'fik'
 require 'fik/interfaces/web'
 require 'pry-remote'
+require 'json'
+
 module Fik
   FOLDER = File.expand_path("../../../sample", __FILE__)
   
@@ -15,8 +17,10 @@ module Fik
     end
     
     get '/run' do
-      game = Fik::Interfaces::Web.new(games[params[:name]])
-      game.run(params[:command])
+      content_type :json
+      game = games[params[:name]]
+      interface = Fik::Interfaces::Web.new(game)
+      { output: interface.run(params[:command]), room: game.room_name }.to_json
     end
     
     get '/messages' do
