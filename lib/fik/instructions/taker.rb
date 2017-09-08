@@ -2,10 +2,10 @@ module Fik
   module Instructions
     class Taker < ItemModifier      
       def execute
-        if @current_room.item_ids.include?(@item_id) 
-          item = @world.find_by_name(@item_id)
+        item = @world.find_by_name(@item_id)
+        if @current_room.item_ids.include?(item) && item.visible? 
           if item.takeable?
-            item.take
+            item.take!
             @protagonist.add_item(@item_id)
             @current_room.remove_item(@item_id)
             

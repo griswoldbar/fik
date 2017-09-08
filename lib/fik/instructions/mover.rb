@@ -31,7 +31,6 @@ module Fik
           recipient_ids: destination.actor_ids - [@protagonist.id],
           message: "#{@protagonist.name} has entered."
         }
-
       end
     end
   end

@@ -6,3 +6,4 @@ exits:
   up: first_floor_hall
 items: 
   - statue
+  - statue_button

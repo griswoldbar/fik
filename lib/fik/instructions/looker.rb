@@ -10,7 +10,7 @@ module Fik
       end
       
       def execute
-        starting_item_statement = @room.items.reject(&:taken?).map(&:starting_description).join("\n")
+        starting_item_statement = @room.items.select(&:visible?).reject(&:taken?).map(&:starting_description).join("\n")
         
         left_items = @room.items.select(&:taken?)
         left_item_statement = if left_items.any?

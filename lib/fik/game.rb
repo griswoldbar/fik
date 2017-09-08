@@ -35,10 +35,9 @@ module Fik
       end
       
       run_instruction(instruction)
-      if @callback
-        run_instruction([@callback])
-      end
+      run_instruction([@callback]) if @callback
       
+      run_item_callback(*instruction)
       @interface.output(@messages.join("\n"))
     end
     
@@ -54,12 +53,12 @@ module Fik
       @messages.push(*runner.messages)
     end
     
-    def run_callback(*instruction)
+    def run_item_callback(*instruction)
       object_ref = instruction[1]
       verb = instruction[0]
       if object_ref
         object = @world.find_by_name(object_ref)
-        callback = object.callbacks[verb]
+        callback = object.respond_to?(:callbacks) && object.callbacks[verb]
         @callback_runner.execute(callback) if callback
       else
         true
