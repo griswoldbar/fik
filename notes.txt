@@ -1,1 +1,2 @@
 - notification when someone leaves the room
+- handle object synonyms

@@ -18,7 +18,7 @@ end
 
 def game
   @_game ||= begin
-    actor = Fik::Models::Actor.new({"name" => "Bob", "starting_room" => "kitchen"})
+    actor = Fik::Models::Actor.new({"name" => "Bob", "starting_room" => "hall"})
     g = Fik::Game.new(world, actor)
     interface = Fik::Interfaces::CLI.new(g)
     g

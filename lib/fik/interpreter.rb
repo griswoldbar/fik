@@ -6,11 +6,13 @@ module Fik
       "go",
       "inventory",
       "take",
-      "drop"
+      "drop",
+      "push"
     ]
     
     SYNONYMS = {
-      "examine" => "describe"
+      "examine" => "describe",
+      "press" => "push"
     }
     
     TRANSLATIONS = {

@@ -1,2 +1,8 @@
 description: There is a small button, embedded in the eye of the statue
 hidden: true
+pushable: true
+push_data: 
+  success: "<click!>\nYou hear a loud creaking from upstairs..."
+  fail: "<click!>"
+callbacks:
+  push: open first_floor_hall east

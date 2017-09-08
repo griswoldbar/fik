@@ -1,5 +1,5 @@
 starting_description: In one corner stands a sculpture of a man fighting a dragon.
 description: The left eye of the statue looks like a button of some kind...
 callbacks:
-  describe: 
-    realise: statue_button
+  describe: realise statue_button
+    

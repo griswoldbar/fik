@@ -5,6 +5,7 @@ require 'fik/instructions/looker'
 require 'fik/instructions/taker'
 require 'fik/instructions/dropper'
 require 'fik/instructions/inventory_lister'
+require 'fik/instructions/pusher'
 
 module Fik
   module Instructions
@@ -29,6 +30,8 @@ module Fik
           Taker.new(item_id: @object, game: @game)
         when "drop"
           Dropper.new(item_id: @object, game: @game)
+        when "push"
+          Pusher.new(item_id: @object, game: @game)
         end
       end
     end
