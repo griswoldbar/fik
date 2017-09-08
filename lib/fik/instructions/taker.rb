@@ -10,10 +10,10 @@ module Fik
             @protagonist.add_item(@item_id)
             @current_room.remove_item(@item_id)
             
-            @notifications = {
-              recipient_ids: @current_room.actor_ids - [@protagonist.id],
+            @notifications << OpenStruct.new(
+              recipients: @current_room.actor_ids - [@protagonist.id],
               message: "#{@protagonist.name} took the #{@item_id}."
-            }
+            )
             
             @messages << (@item_id + ": taken.")
           else

@@ -7,10 +7,11 @@ module Fik
         Curses.start_color
         @header = Curses::Window.new(1, Curses.cols, 0, 0)
         @messages = Curses::Window.new(3, Curses.cols, 1,0)
-        @body = Curses::Window.new(Curses.lines - 5, Curses.cols, 4,0)
+        @body = Curses::Window.new(Curses.lines - 6, Curses.cols, 5,0)
         
         Curses.init_pair(1, Curses::COLOR_BLACK, Curses::COLOR_WHITE)
         @header.attrset(Curses.color_pair(1))
+        @messages.scrollok(true)
       end
       
       def close
@@ -31,8 +32,7 @@ module Fik
       end
       
       def messages(text)
-        @messages.clear
-        @messages.addstr(text)
+        @messages.addstr("\n" + text)
         @messages.refresh
       end
       
@@ -46,6 +46,7 @@ module Fik
       
       private
       def wrap(s, width=Curses.cols)
+        s ||= ""
 	      s.gsub(/(.{1,#{width}})(\s+|\Z)/, "\\1\n")
 	    end
     end

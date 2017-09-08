@@ -7,6 +7,7 @@ module Fik
         @room = game.current_room
         @protagonist = game.protagonist
         @messages = []
+        @notifications = []
       end
       
       def execute

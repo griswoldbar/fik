@@ -11,6 +11,7 @@ module Fik
         @protagonist = game.protagonist
         @messages = []
         @callback = 'look'
+        @notifications = []
       end
       
       def execute
@@ -27,10 +28,14 @@ module Fik
       
         @messages << "You go #{@direction} to the #{destination.print_name}."
 
-        @notifications = {
-          recipient_ids: destination.actor_ids - [@protagonist.id],
+        @notifications << OpenStruct.new(
+          recipients: destination.actor_ids - [@protagonist.id],
           message: "#{@protagonist.name} has entered."
-        }
+        )
+        @notifications << OpenStruct.new(
+          recipients: @current_room.actor_ids,
+          message: "#{@protagonist.name} has left the room."
+        )
       end
     end
   end

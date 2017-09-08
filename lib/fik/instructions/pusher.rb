@@ -9,12 +9,15 @@ module Fik
             push_response = item.push!
             @messages << (@item_id + ": pushed.")
 
-            @messages << push_response
-            
-            @notifications = {
-              recipient_ids: @current_room.actor_ids - [@protagonist.id],
+            @notifications << OpenStruct.new(
+              recipients: @current_room.actor_ids - [@protagonist.id],
               message: "#{@protagonist.name} pushed the #{@item_id}."
-            }
+            )
+            @notifications << OpenStruct.new(
+              recipients: @current_room.actor_ids,
+              message: push_response
+            )
+            
           else
             @messages << "You can't push that!"
           end

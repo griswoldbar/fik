@@ -48,7 +48,9 @@ module Fik
         game: self
       ).build
       runner.execute
-      @notifier.notify(runner.notifications) if runner.notifications
+      runner.notifications.each do |n|
+        @notifier.notify(n) 
+      end
       @callback = runner.callback
       @messages.push(*runner.messages)
     end
