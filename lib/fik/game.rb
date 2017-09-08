@@ -26,6 +26,7 @@ module Fik
     end
     
     def execute(command)
+      @messages = []
       instruction = @interpreter.interpret(command)
       
       unless instruction
@@ -33,18 +34,26 @@ module Fik
         return
       end
       
+      run_instruction(instruction)
+      if @callback
+        run_instruction([@callback])
+      end
+      
+      @interface.output(@messages.join("\n"))
+    end
+    
+    private
+    def run_instruction(instruction)
       runner = Instructions::Factory.new(
         instruction: instruction,
         game: self
       ).build
       runner.execute
-      
       @notifier.notify(runner.notifications) if runner.notifications
-      self.execute(runner.callback) if runner.callback
-      @interface.output(runner.messages.join("\n"))
+      @callback = runner.callback
+      @messages.push(*runner.messages)
     end
     
-    private
     def run_callback(*instruction)
       object_ref = instruction[1]
       verb = instruction[0]
