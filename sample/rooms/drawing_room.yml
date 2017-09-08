@@ -1,3 +1,3 @@
-description: A large drawing room, decorated in a fin de siecle style.
+description: A large drawing room, decorated in a fin de siecle style. A door to the south leads back out to the hall.
 exits:
   south: hall

@@ -1,4 +1,4 @@
-description: A large hall. Stairs lead up.
+description: You are in an imposing hall. Portraits line the walls and a rich persian rug lies on the floor. Stairs lead up, and there are doors to the north and west. The front door to the house leads out to the south.
 exits: 
   north: drawing_room
   south: garden

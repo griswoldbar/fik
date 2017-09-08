@@ -23,7 +23,7 @@ module Fik
         while true do
           response = HTTParty.get("#{@url}/run?name=#{name}&command=#{command}")
           set_room(response['room'])
-          @terminal.body(response['output']+"\n> ")
+          @terminal.body(response['output'])
           command = @terminal.get_body
           exit if command == "exit"
         end

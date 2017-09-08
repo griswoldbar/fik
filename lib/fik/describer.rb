@@ -27,11 +27,11 @@ module Fik
         actors.map {|a| "#{a} is here."}.join("\n")
       end
       
-      directions = room.exit_directions
-      exit_prefix = directions.count == 1 ? "There is an exit" : "There are exits"
-      exit_statement = "#{exit_prefix} to the #{directions.to_sentence}."
+      # directions = room.exit_directions
+      # exit_prefix = directions.count == 1 ? "There is an exit" : "There are exits"
+      # exit_statement = "#{exit_prefix} to the #{directions.to_sentence}."
       
-      [room.description, exit_statement, starting_item_statement, actor_statement, left_item_statement].compact.join("\n")
+      [room.description + "\n", starting_item_statement, actor_statement, left_item_statement].compact.join("\n")
     end
   end
 end
