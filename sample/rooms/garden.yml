@@ -1,3 +1,8 @@
 description: You find yourself in a beautiful garden. Birds are singing, bees are buzzing and the sweet aroma of summer flowers fills the air. An imposingly gothic house stands to the north.
 exits: 
   north: hall
+hidden_exits:
+  down: 
+    id: cave
+    description: A dark hole leading down into the gloom...
+    timeout: 10

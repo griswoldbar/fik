@@ -1,2 +1,3 @@
 - notification when someone leaves the room
 - handle object synonyms
+- require torch in dark places

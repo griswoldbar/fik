@@ -1,0 +1,7 @@
+description: A strange button on the wall
+pushable: true
+push_data: 
+  success: "<click!>\nYou hear a creaking noise. It might have come from outside...?"
+  fail: "<click!>"
+callbacks:
+  push: open garden down
