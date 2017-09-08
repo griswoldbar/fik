@@ -1,3 +1,4 @@
 description: A crumpled note.
 starting_description: A note lies crumpled on the floor.
 read: Hello. Welcome to Ghostly Towers!
+takeable: true

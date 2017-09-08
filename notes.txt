@@ -1,0 +1,1 @@
+- notification when someone leaves the room

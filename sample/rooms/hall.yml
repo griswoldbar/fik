@@ -4,3 +4,5 @@ exits:
   south: garden
   west: kitchen
   up: first_floor_hall
+items: 
+  - statue

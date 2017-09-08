@@ -4,9 +4,11 @@ module Fik
       @world = world
     end
     
-    def notify(recipient_ids:, message:)
-      recipient_ids.each do |id|
-        PrivatePub.publish_to "/#{id}", :message => message
+    def notify(opts={})
+      if opts[:recipient_ids]
+        opts[:recipient_ids].each do |id|
+          PrivatePub.publish_to "/#{id}", :message => opts[:message]
+        end
       end
     end
   end

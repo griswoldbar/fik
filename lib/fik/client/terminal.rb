@@ -19,7 +19,7 @@ module Fik
       
       def header(text)
         @header.clear
-        @header.addstr(text.upcase)
+        @header.addstr(text.upcase.gsub("_", " "))
         @header.refresh
       end
       

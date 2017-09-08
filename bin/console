@@ -12,13 +12,18 @@ PrivatePub.load_config(File.expand_path("../../config/private_pub.yml", __FILE__
 
 CONFIG = Fik::Configuration.new("./lib/../sample").build
 
+def world
+  @_world ||= Fik::World.new(rooms: CONFIG["rooms"],items: CONFIG["items"])
+end
+
 def game
   @_game ||= begin
-    world = Fik::World.new(rooms: CONFIG["rooms"],items: CONFIG["items"])
     actor = Fik::Models::Actor.new({"name" => "Bob", "starting_room" => "kitchen"})
     g = Fik::Game.new(world, actor)
     interface = Fik::Interfaces::CLI.new(g)
+    g
   end
 end
+
 Pry.start
 

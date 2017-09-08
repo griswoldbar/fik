@@ -1,3 +1,5 @@
 description: A long hall lined with paintings. A staircase leads down.
 exits:
   down: hall
+concealed_exits:
+  east: secret_study
