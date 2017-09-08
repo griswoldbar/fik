@@ -9,6 +9,10 @@ module Fik
       "drop"
     ]
     
+    SYNONYMS = {
+      "examine" => "describe"
+    }
+    
     TRANSLATIONS = {
       "n" => "go north",
       "s" => "go south",
@@ -30,6 +34,9 @@ module Fik
     def interpret(command)
       meth = command[0]
       if COMMANDS.include?(meth)
+        command
+      elsif synonym = SYNONYMS[meth]
+        command[0] = synonym
         command
       elsif translation = TRANSLATIONS[meth]
         translation.split(" ")

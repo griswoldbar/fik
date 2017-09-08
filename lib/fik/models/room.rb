@@ -1,7 +1,7 @@
 module Fik
   module Models
     class Room
-      attr_reader :type, :description, :exits, :name, :item_ids, :actor_ids
+      attr_reader :type, :description, :exits, :name, :item_ids, :actor_ids, :callbacks
       def initialize(hash, world)
         @world = world
         @description = hash["description"]

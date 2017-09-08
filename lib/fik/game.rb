@@ -58,7 +58,7 @@ module Fik
       verb = instruction[0]
       if object_ref
         object = @world.find_by_name(object_ref)
-        callback = object.respond_to?(:callbacks) && object.callbacks[verb]
+        callback = object.callbacks && object.callbacks[verb]
         @callback_runner.execute(callback) if callback
       else
         true
