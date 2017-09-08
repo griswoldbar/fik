@@ -3,8 +3,9 @@ require 'fik/callbacks/opener'
 module Fik
   module Callbacks
     class Runner
-      def initialize(world)
-        @world = world
+      def initialize(game)
+        @game = game
+        @world = game.world
       end
       
       def execute(callback)
@@ -17,7 +18,9 @@ module Fik
           when "realise"
             object.realise!
           when "open"
-            Callbacks::Opener.new(room: object, direction: auxiliary).execute
+            Callbacks::Opener.new(room: object, direction: auxiliary, game: @game, runner: self).execute
+          when "unpush"
+            object.unpush!
         end
       end
     end

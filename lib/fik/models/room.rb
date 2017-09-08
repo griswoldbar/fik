@@ -2,7 +2,7 @@ module Fik
   module Models
     class Room
       attr_reader :type, :exits, :name, :item_ids, :actor_ids, :callbacks, :hidden_exits
-      attr_accessor :description
+      attr_accessor :description, :original_description
       
       def initialize(hash, world)
         @world = world
@@ -13,6 +13,18 @@ module Fik
         @type = "room"
         @actor_ids = []
         @hidden_exits = hash["hidden_exits"]
+      end
+      
+      def open_hidden_exit(direction)
+        he = @hidden_exits[direction]
+        he["open"] = true
+        @exits[direction] = he["id"]
+      end
+      
+      def close_hidden_exit(direction)
+        he = @hidden_exits[direction]
+        he["open"] = false
+        @exits.delete(direction)
       end
 
       def print_name
@@ -40,10 +52,7 @@ module Fik
       def add_item(item_id)
         @item_ids << item_id
       end
-      
-      def exit_directions
-        @exits.keys
-      end
+  
     end
   end
 end

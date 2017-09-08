@@ -22,11 +22,7 @@ module Fik
         actor_statement = if actors.any? 
           actors.map {|a| "#{a} is here."}.join("\n")
         end
-        
-        # directions = room.exit_directions
-        # exit_prefix = directions.count == 1 ? "There is an exit" : "There are exits"
-        # exit_statement = "#{exit_prefix} to the #{directions.to_sentence}."
-        
+              
         @messages << [@room.description + "\n", starting_item_statement, actor_statement, left_item_statement].compact.join("\n")
       end
     end

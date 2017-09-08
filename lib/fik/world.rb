@@ -8,6 +8,10 @@ module Fik
       @actors = {}
     end
     
+    def actor_ids
+      @actors.keys
+    end
+    
     def add_actor(actor)
       @actors[actor.id] = actor
     end

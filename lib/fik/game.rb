@@ -5,7 +5,7 @@ require 'ostruct'
 module Fik
   class Game
     attr_writer :interface
-    attr_reader :protagonist, :world
+    attr_reader :protagonist, :world, :notifier
     attr_accessor :current_room
     
     def initialize(world, protagonist)
@@ -15,7 +15,7 @@ module Fik
 
       @interpreter = Interpreter.new
       @notifier = Notifier.new(@world)
-      @callback_runner = Callbacks::Runner.new(@world)
+      @callback_runner = Callbacks::Runner.new(self)
             
       @current_room.add_actor(@protagonist.id)
       @world.add_actor(@protagonist)

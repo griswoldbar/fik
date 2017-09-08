@@ -31,6 +31,10 @@ module Fik
         @taken = true
       end
       
+      def unpush!
+        @pushed = false
+      end
+      
       def push!
         if pushed?
           @push_data["fail"]

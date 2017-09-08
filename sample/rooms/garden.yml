@@ -5,4 +5,5 @@ hidden_exits:
   down: 
     id: cave
     description: A dark hole leading down into the gloom...
+    close_callback: unpush wall_button
     timeout: 10
